@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Upload, arrange, and merge documents into a PDF.">
+  <title>Document Merger</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">SHARED WORKSPACE</p>
+        <h1>Document Merger</h1>
+        <p class="subtitle">Upload documents, arrange them in your preferred order, and merge them into one PDF.</p>
+      </div>
+      <button id="refreshButton" class="button button-secondary" type="button">Refresh</button>
+    </header>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <h2>1. Upload documents</h2>
+          <p>Files can be selected in any order. You can change the order below.</p>
+        </div>
+      </div>
+      <label id="dropZone" class="drop-zone" for="fileInput">
+        <span class="upload-icon" aria-hidden="true">↑</span>
+        <strong>Drop files here or browse</strong>
+        <span>PDF, PNG, JPG, JPEG, HEIC and HEIF</span>
+        <input id="fileInput" type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.heic,.heif,application/pdf,image/png,image/jpeg">
+      </label>
+      <div class="upload-row">
+        <span id="uploadStatus" class="muted" role="status" aria-live="polite">No files selected.</span>
+        <button id="uploadButton" class="button button-primary" type="button" disabled>Upload selected files</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <h2>2. Arrange documents</h2>
+          <p>Drag rows to reorder, or use the arrow buttons. The top document becomes the first pages in the PDF.</p>
+        </div>
+        <span id="documentCount" class="count">0 documents</span>
+      </div>
+      <div id="documentList" class="document-list">
+        <div class="empty-state">Your uploaded documents will appear here.</div>
+      </div>
+      <div class="list-footer">
+        <span class="muted">Uploads automatically expire after 1 hour.</span>
+        <button id="mergeButton" class="button button-primary" type="button" disabled>Merge into PDF</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <h2>3. Merged PDFs</h2>
+          <p>Download a generated PDF before it expires.</p>
+        </div>
+      </div>
+      <div id="mergedList" class="merged-list">
+        <div class="empty-state">No merged PDFs yet.</div>
+      </div>
+      <p class="muted small">Merged PDFs are automatically deleted after 1 day.</p>
+    </section>
+
+    <section class="storage-panel" aria-label="Storage usage">
+      <div class="storage-topline">
+        <strong>Shared storage</strong>
+        <span id="storageText">0 B of 1 GiB used</span>
+      </div>
+      <div class="storage-track"><div id="storageBar" class="storage-bar"></div></div>
+      <p class="muted small">The 1 GiB limit includes uploads and generated PDFs.</p>
+    </section>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <footer>One shared workspace · Anyone with access to this API can manage its files.</footer>
+  </main>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
